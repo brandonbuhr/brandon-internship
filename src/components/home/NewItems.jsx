@@ -24,12 +24,37 @@ const NewItems = () => {
       });
   }, []);
 
-  const formatTime = (unixTime) => {
-    const date = new Date(unixTime * 1000);
-    const hours = String(date.getHours());
-    const minutes = String(date.getMinutes());
-    const seconds = String(date.getSeconds());
-    return `${hours}h ${minutes}m ${seconds}s`;
+  const formatTime = (timeLeft) => {
+    const hours = Math.floor(
+      (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    return ` ${hours}h ${minutes}m ${seconds}s`;
+  };
+
+  const Countdown = ({ expiryDate }) => {
+    const [timeLeft, setTimeLeft] = useState(0);
+
+    useEffect(() => {
+      const timer = setInterval(() => {
+        const now = Date.now();
+        const difference = expiryDate - now;
+        if (difference > 0) {
+          setTimeLeft(difference);
+        } else {
+          setTimeLeft(0);
+          clearInterval(timer);
+        }
+      }, 1000);
+
+      const initialDifference = expiryDate - Date.now();
+      setTimeLeft(Math.max(initialDifference, 0));
+
+      return () => clearInterval(timer);
+    }, [expiryDate]);
+
+    return <div className="de_countdown">{formatTime(timeLeft)}</div>;
   };
 
   const responsive = {
@@ -89,8 +114,8 @@ const NewItems = () => {
                         <i className="fa fa-check"></i>
                       </Link>
                     </div>
-                    <div className="de_countdown">
-                      {formatTime(item.expiryDate)}
+                    <div>
+                      <Countdown expiryDate={item.expiryDate} />
                     </div>
                     <div className="nft__item_wrap">
                       <div className="nft__item_extra">
