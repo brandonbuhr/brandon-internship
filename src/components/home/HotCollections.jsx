@@ -108,3 +108,4 @@ const HotCollections = () => {
 };
 
 export default HotCollections;
+// complete
