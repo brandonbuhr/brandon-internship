@@ -22,7 +22,13 @@ const TopSellers = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    <div className="skeleton-wrapper">
+      <div className="skeleton skeleton-avatar"></div>
+      <div className="skeleton skeleton-title"></div>
+      <div className="skeleton skeleton-text"></div>
+      <div className="skeleton skeleton-text"></div>
+      <div className="skeleton skeleton-text"></div>
+    </div>;
   }
 
   return (
