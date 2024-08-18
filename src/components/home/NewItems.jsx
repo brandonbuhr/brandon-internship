@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Countdown from "../FormatTime";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -23,39 +24,6 @@ const NewItems = () => {
         setLoading(false);
       });
   }, []);
-
-  const formatTime = (timeLeft) => {
-    const hours = Math.floor(
-      (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-    return ` ${hours}h ${minutes}m ${seconds}s`;
-  };
-
-  const Countdown = ({ expiryDate }) => {
-    const [timeLeft, setTimeLeft] = useState(0);
-
-    useEffect(() => {
-      const timer = setInterval(() => {
-        const now = Date.now();
-        const difference = expiryDate - now;
-        if (difference > 0) {
-          setTimeLeft(difference);
-        } else {
-          setTimeLeft(0);
-          clearInterval(timer);
-        }
-      }, 1000);
-
-      const initialDifference = expiryDate - Date.now();
-      setTimeLeft(Math.max(initialDifference, 0));
-
-      return () => clearInterval(timer);
-    }, [expiryDate]);
-
-    return <div className="de_countdown">{formatTime(timeLeft)}</div>;
-  };
 
   const responsive = {
     0: {
