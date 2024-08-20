@@ -49,7 +49,7 @@ const Author = () => {
                         <i className="fa fa-check"></i>
                         <div className="profile_name">
                           <h4>
-                            {author.name}
+                            {author.authorName}
                             <span className="profile_username">
                               {author.tag}
                             </span>
@@ -66,7 +66,7 @@ const Author = () => {
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
                         <div className="profile_follower">
-                          {author.followers}
+                          {author.followers} Followers
                         </div>
                         <Link to="#" className="btn-main">
                           Follow
