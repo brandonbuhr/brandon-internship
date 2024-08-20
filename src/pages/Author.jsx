@@ -60,7 +60,7 @@ const Author = () => {
                           <h4>
                             {author.authorName}
                             <span className="profile_username">
-                              {author.tag}
+                              @{author.tag}
                             </span>
                             <span id="wallet" className="profile_wallet">
                               {author.address}
@@ -75,7 +75,7 @@ const Author = () => {
                     <div className="profile_follow de-flex">
                       <div className="de-flex-col">
                         <div className="profile_follower">
-                          {author.followers} Followers
+                          {author.followers} followers
                         </div>
                         <Link to="#" className="btn-main">
                           Follow
