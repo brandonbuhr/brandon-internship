@@ -46,7 +46,13 @@ const Explore = () => {
           <div className="container">
             <div className="row">
               {loading ? (
-                <p>Loading...</p>
+                <div class="skeleton-wrapper">
+                  <div class="skeleton skeleton-avatar"></div>
+                  <div class="skeleton skeleton-title"></div>
+                  <div class="skeleton skeleton-text"></div>
+                  <div class="skeleton skeleton-text"></div>
+                  <div class="skeleton skeleton-text"></div>
+                </div>
               ) : (
                 <ExploreItems exploreData={explore} />
               )}
