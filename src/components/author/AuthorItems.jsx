@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 
 const AuthorItems = ({ authorImg }) => {
   const [authorItems, setAuthorItems] = useState([]);
@@ -24,8 +22,16 @@ const AuthorItems = ({ authorImg }) => {
       });
   }, [id]);
 
-
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div class="skeleton-wrapper">
+        <div class="skeleton skeleton-avatar"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+      </div>
+    );
   console.log(authorItems);
   return (
     <div className="de_tab_content">

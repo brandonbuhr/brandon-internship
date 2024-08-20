@@ -24,7 +24,16 @@ const Author = () => {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div class="skeleton-wrapper">
+        <div class="skeleton skeleton-avatar"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+      </div>
+    );
 
   return (
     <div id="wrapper">
