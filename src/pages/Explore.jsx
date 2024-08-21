@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
 import axios from "axios";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 const Explore = () => {
   const [explore, setExplore] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ const Explore = () => {
   }, []);
 
   return (
-    <div id="wrapper">
+    <div id="wrapper" data-aos="fade-up">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
 
