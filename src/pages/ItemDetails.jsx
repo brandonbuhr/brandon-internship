@@ -26,7 +26,16 @@ const ItemDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  if (loading)
+    return (
+      <div class="skeleton-wrapper">
+        <div class="skeleton skeleton-avatar"></div>
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+        <div class="skeleton skeleton-text"></div>
+      </div>
+    );
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -62,13 +71,19 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
-                              <img className="lazy" src={AuthorImage} alt="" />
+                            <Link to={`/author/${itemDetails.ownerId}`}>
+                              <img
+                                className="lazy"
+                                src={itemDetails.ownerImage}
+                                alt=""
+                              />
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">Monica Lucas</Link>
+                            <Link to={`/author/${itemDetails.ownerId}`}>
+                              {itemDetails.ownerName}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -79,7 +94,7 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${itemDetails.creatorId}`}>
                               <img
                                 className="lazy"
                                 src={itemDetails.creatorImage}
@@ -89,7 +104,9 @@ const ItemDetails = () => {
                             </Link>
                           </div>
                           <div className="author_list_info">
-                            <Link to="/author">{itemDetails.creatorName}</Link>
+                            <Link to={`/author/${itemDetails.creatorId}`}>
+                              {itemDetails.creatorName}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -97,7 +114,7 @@ const ItemDetails = () => {
                       <h6>Price</h6>
                       <div className="nft-item-price">
                         <img src={EthImage} alt="" />
-                        <span>1.85</span>
+                        <span>{itemDetails.price}</span>
                       </div>
                     </div>
                   </div>
