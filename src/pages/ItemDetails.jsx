@@ -28,13 +28,18 @@ const ItemDetails = () => {
   }, []);
   if (loading)
     return (
-      <div class="skeleton-wrapper">
-        <div class="skeleton skeleton-avatar"></div>
-        <div class="skeleton skeleton-title"></div>
-        <div class="skeleton skeleton-text"></div>
-        <div class="skeleton skeleton-text"></div>
-        <div class="skeleton skeleton-text"></div>
-      </div>
+      <>
+        <div className="skeleton-item-details-wrapper">
+          <div className="skeleton-item-img"></div>
+          <div className="skeleton-item-details">
+            <div className="skeleton-item"></div>
+            <div className="skeleton-item"></div>
+            <div className="skeleton-item"></div>
+            <div className="skeleton-item"></div>
+            <div className="skeleton-item"></div>
+          </div>
+        </div>
+      </>
     );
   return (
     <div id="wrapper">

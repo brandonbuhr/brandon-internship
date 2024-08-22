@@ -4,6 +4,9 @@ const Countdown = ({ expiryDate }) => {
   const [timeLeft, setTimeLeft] = useState(0);
 
   const formatTime = (timeLeft) => {
+    if (timeLeft <= 0) {
+      return "Expired";
+    }
     const hours = Math.floor(
       (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );

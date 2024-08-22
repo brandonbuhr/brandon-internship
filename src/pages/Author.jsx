@@ -7,8 +7,10 @@ import axios from "axios";
 const Author = () => {
   const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const { id } = useParams();
+
   useEffect(() => {
     axios
       .get(
@@ -22,17 +24,32 @@ const Author = () => {
         console.error("Error fetching data: ", error);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
+
+  const handleFollowClick = () => {
+    setIsFollowing(!isFollowing);
+    setAuthor((prevAuthor) => ({
+      ...prevAuthor,
+      followers: prevAuthor.followers + (isFollowing ? -1 : 1),
+    }));
+  };
 
   if (loading)
     return (
-      <div class="skeleton-wrapper">
-        <div class="skeleton skeleton-avatar"></div>
-        <div class="skeleton skeleton-title"></div>
-        <div class="skeleton skeleton-text"></div>
-        <div class="skeleton skeleton-text"></div>
-        <div class="skeleton skeleton-text"></div>
-      </div>
+      <>
+        <div className="skeleton-explore-wrapper">
+          <div className="skeleton-explore"></div>
+          <div className="skeleton-explore"></div>
+          <div className="skeleton-explore"></div>
+          <div className="skeleton-explore"></div>
+        </div>
+        <div className="skeleton-explore-wrapper">
+          <div className="skeleton-explore"></div>
+          <div className="skeleton-explore"></div>
+          <div className="skeleton-explore"></div>
+          <div className="skeleton-explore"></div>
+        </div>
+      </>
     );
 
   return (
@@ -77,8 +94,12 @@ const Author = () => {
                         <div className="profile_follower">
                           {author.followers} followers
                         </div>
-                        <Link to="#" className="btn-main">
-                          Follow
+                        <Link
+                          to="#"
+                          className="btn-main"
+                          onClick={handleFollowClick}
+                        >
+                          {isFollowing ? "Unfollow" : "Follow"}
                         </Link>
                       </div>
                     </div>
