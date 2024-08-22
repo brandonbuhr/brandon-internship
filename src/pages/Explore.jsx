@@ -48,13 +48,20 @@ const Explore = () => {
           <div className="container">
             <div className="row">
               {loading ? (
-                <div class="skeleton-wrapper">
-                  <div class="skeleton skeleton-avatar"></div>
-                  <div class="skeleton skeleton-title"></div>
-                  <div class="skeleton skeleton-text"></div>
-                  <div class="skeleton skeleton-text"></div>
-                  <div class="skeleton skeleton-text"></div>
-                </div>
+                <>
+                  <div className="skeleton-explore-wrapper">
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                  </div>
+                  <div className="skeleton-explore-wrapper">
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                    <div className="skeleton-explore"></div>
+                  </div>
+                </>
               ) : (
                 <ExploreItems exploreData={explore} />
               )}
